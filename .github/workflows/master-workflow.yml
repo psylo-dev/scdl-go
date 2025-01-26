@@ -44,7 +44,7 @@ jobs:
           GO111MODULE: "on"
       - name: Build Android .AAR library
         run: |
-          gomobile bind -v -target=android/arm,android/arm64,android/386,android/amd64 -o scdl.aar .
+          gomobile bind -v -target=android/arm,android/arm64,android/386,android/amd64 -o scdl.aar ./cmd/scdl
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ANDROID_NDK_TOOLCHAIN: ${{ steps.setup-ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin
