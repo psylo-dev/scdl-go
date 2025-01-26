@@ -22,16 +22,17 @@ jobs:
       - uses: android-actions/setup-android@v3
       - name: Install Android Platform
         run: |
-          sdkmanager "platform-tools"
-          sdkmanager "platforms;android-29"
-          sdkmanager "build-tools;29.0.2"
+         yes | sdkmanager --licenses
+               sdkmanager "platform-tools"
+               sdkmanager "platforms;android-29"
+               sdkmanager "build-tools;29.0.2"
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
           ndk-version: r21d
       - uses: actions/setup-go@v5
         with:
-          go-version: '^1.23'
+          go-version: '^1.24'
       - name: Install Gomobile
         run: |
           go install golang.org/x/mobile/cmd/gomobile@latest
@@ -44,7 +45,7 @@ jobs:
           GO111MODULE: "on"
       - name: Build Android .AAR library
         run: |
-          gomobile bind -v -target=android/arm,android/arm64,android/386,android/amd64 -o scdl.aar ./cmd/scdl
+          gomobile bind -v -target=android/arm,android/arm64,android/386,android/amd64 -o scdl.aar ./pkg/soundcloud
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           ANDROID_NDK_TOOLCHAIN: ${{ steps.setup-ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin
