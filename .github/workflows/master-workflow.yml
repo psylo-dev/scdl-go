@@ -32,7 +32,7 @@ jobs:
           ndk-version: r21d
       - uses: actions/setup-go@v5
         with:
-          go-version: '^1.24'
+          go-version: '^1.23'
       - name: Install Gomobile
         run: |
           go install golang.org/x/mobile/cmd/gomobile@latest
