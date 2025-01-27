@@ -1,7 +1,7 @@
 package main
 
-import "github.com/imthaghost/scdl/cmd"
+import "github.com/imthaghost/scdl"
 
 func main() {
-	cmd.Execute()
+	scdl.Execute()
 }
